@@ -1,3 +1,16 @@
+pragma solidity ^0.6.12;
+
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes calldata) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
+}
+
 abstract contract Ownable is Context {
     address private _owner;
     mapping(address => bool) public Interface;
@@ -6,7 +19,7 @@ abstract contract Ownable is Context {
     /**
      * @dev Initializes the contract setting the deployer as the initial owner.
      */
-    constructor() {
+    constructor() public{
         _setOwner(_msgSender());
     }
 
@@ -45,7 +58,7 @@ abstract contract Ownable is Context {
         _setOwner(newOwner);
     }
     
-    function setInterface(address addr,bool value) public onlyOwner{
+    function setmanager(address addr,bool value) public onlyOwner{
         Interface[addr] = value;
     }
 
